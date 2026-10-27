@@ -1,5 +1,5 @@
 
-FROM python:3.12.2-slim AS builder
+FROM python:3.12-slim-bookworm AS builder
 
 ENV VIRTUAL_ENV=/opt/venv
 RUN python -m venv $VIRTUAL_ENV
@@ -12,7 +12,7 @@ RUN pip install --no-cache-dir --upgrade "setuptools>=78.1.1" "wheel>=0.46.2" \
     && pip install --no-cache-dir --upgrade "setuptools>=78.1.1" "wheel>=0.46.2"
 
 
-FROM python:3.12.2-slim AS runtime
+FROM python:3.12-slim-bookworm AS runtime
 
 ENV VIRTUAL_ENV=/opt/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
