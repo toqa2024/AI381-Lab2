@@ -7,7 +7,8 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 WORKDIR /build
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir --upgrade "setuptools>=78.1.1" "wheel>=0.46.2"
 
 
 FROM python:3.12.2-slim AS runtime
