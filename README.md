@@ -82,3 +82,11 @@ After successful checks on `main`, GitHub Actions publishes the Docker image to 
 Container registry: `ghcr.io/toqa2024/ai381-lab2`
 
 The `main` branch is protected by a ruleset requiring pull requests and successful status checks.
+
+
+## Submission Deliverables
+
+- **GitHub Repository:** https://github.com/toqa2024/AI381-Lab2
+- **GHCR Image:** `ghcr.io/toqa2024/ai381-lab2`
+- **Image Digest:** `sha256:6f31fe468b5a02083c9fcd107ec7ec20f4d2b4344e2e0c505c327e3d9969816d`
+
