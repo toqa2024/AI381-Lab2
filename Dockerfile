@@ -24,7 +24,7 @@ WORKDIR /app
 COPY --from=builder /opt/venv /opt/venv
 COPY src/ ./src/
 COPY models/ ./models/
-
+COPY artifacts/ ./artifacts/
 USER appuser
 
 EXPOSE 8000

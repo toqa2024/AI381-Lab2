@@ -9,8 +9,10 @@ client = TestClient(app)
 def test_health_endpoint():
     response = client.get("/health")
     assert response.status_code == 200
-    assert response.json() == {"status": "healthy"}
 
+    data = response.json()
+    assert data["status"] == "ok"
+    assert data["model_version"] == "local"
 
 def test_predict_endpoint_returns_prediction():
     response = client.post(
@@ -25,6 +27,7 @@ def test_predict_endpoint_returns_prediction():
     )
     assert response.status_code == 200
     assert response.json()["churn_prediction"] in [0, 1]
+    assert 0.0 <= response.json()["churn_probability"] <= 1.0
 
 
 def test_model_is_loaded():
