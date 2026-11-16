@@ -14,6 +14,11 @@ RUN pip install --no-cache-dir --upgrade "setuptools>=78.1.1" "wheel>=0.46.2" \
 
 FROM python:3.12-slim-bookworm@sha256:e697c81897302a4c4333bade000d98038fbb21eb064f8ee1fd42d02ebcd9d337 AS runtime
 
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 ENV VIRTUAL_ENV=/opt/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -26,6 +31,7 @@ WORKDIR /app
 COPY --from=builder /opt/venv /opt/venv
 COPY src/ ./src/
 COPY models/ ./models/
+COPY artifacts/ ./artifacts/
 
 USER appuser
 
