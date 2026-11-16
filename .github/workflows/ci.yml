@@ -1,5 +1,4 @@
-
-name: MLOPs Lab 2 CI Pipeline
+name: MLOps Lab 2 CI Pipeline
 
 on:
   push:
@@ -12,7 +11,7 @@ permissions:
 
 jobs:
   lint-and-test:
-    name: Lint and Test
+    name: line-and-test
     runs-on: ubuntu-latest
 
     steps:
@@ -37,7 +36,7 @@ jobs:
         run: PYTHONPATH=. pytest -v
 
   build-and-scan:
-    name: Build and Scan Docker Image
+    name: build-and-scan
     runs-on: ubuntu-latest
     needs: lint-and-test
 
