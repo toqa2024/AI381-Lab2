@@ -12,6 +12,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 FROM python:3.12.2-slim AS runtime
 
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 ENV VIRTUAL_ENV=/opt/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -25,6 +30,7 @@ COPY --from=builder /opt/venv /opt/venv
 COPY src/ ./src/
 COPY models/ ./models/
 COPY artifacts/ ./artifacts/
+
 USER appuser
 
 EXPOSE 8000
