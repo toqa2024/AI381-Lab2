@@ -1,4 +1,3 @@
-
 """Lab 3: train several candidate models and record every run in MLflow."""
 
 import hashlib
@@ -14,7 +13,6 @@ import numpy as np
 import pandas as pd
 from mlflow.models import infer_signature
 from sklearn.compose import ColumnTransformer
-from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score, roc_auc_score
 from sklearn.model_selection import train_test_split
@@ -38,20 +36,9 @@ def preprocessing() -> ColumnTransformer:
     )
 
 
-# Three different model candidates
+# One deliberately weak model candidate
 CANDIDATES = {
-    "logreg": LogisticRegression(max_iter=1000),
-    "random_forest": RandomForestClassifier(
-        n_estimators=200,
-        max_depth=8,
-        random_state=42,
-    ),
-    "gradient_boosting": GradientBoostingClassifier(
-        n_estimators=100,
-        learning_rate=0.1,
-        max_depth=3,
-        random_state=42,
-    ),
+    "weak": LogisticRegression(C=0.00001, max_iter=1000)
 }
 
 
