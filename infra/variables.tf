@@ -27,3 +27,9 @@ variable "owner" {
   type        = string
   default     = "student"
 }
+
+variable "docker_host" {
+  description = "Docker daemon connection endpoint"
+  type        = string
+  default     = "npipe:////./pipe/docker_engine"
+}
