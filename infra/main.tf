@@ -7,7 +7,7 @@ resource "docker_container" "api" {
     external = var.external_port
   }
 
-  restart = "unless-stopped"
+  restart = "always"
 
   labels {
     label = "owner"
